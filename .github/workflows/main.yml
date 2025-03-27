@@ -20,5 +20,5 @@ jobs:
       name: Restore
     - run: dotnet build --no-restore
       name: Build
-    - run: dotnet test
+    - run: dotnet test --logger "trx;LogFileName=report.trx" --results-directory ./test-output
       name: Unit tests
