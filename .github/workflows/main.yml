@@ -20,3 +20,5 @@ jobs:
       name: Restore
     - run: dotnet build --no-restore
       name: Build
+    - run: dotnet test
+      name: Unit tests
