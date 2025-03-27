@@ -18,7 +18,7 @@ jobs:
         dotnet-version: '8.0.x'
     - run: dotnet restore
       name: Restore
-    - run: dotnet build --no-restore
+    - run: dotnet build
       name: Build
     - run: dotnet test
       name: Unit tests
