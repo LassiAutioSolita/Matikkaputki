@@ -20,3 +20,4 @@ jobs:
       name: Restore
     - run: dotnet build
       name: Build
+    - run: dotnet test
