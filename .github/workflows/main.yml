@@ -3,6 +3,10 @@ on:
   push:
     branches: [ LassiAutioSolita-patch-1 ]
 
+defaults:
+  run:
+    working-directory: ./MathWorkshop
+
 jobs:
   build:
     runs-on: ubuntu-latest
