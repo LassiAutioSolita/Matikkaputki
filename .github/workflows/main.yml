@@ -1,7 +1,11 @@
 name: Matikkapipeline
 on:
   push:
-    branches: [ LassiAutioSolita-patch-1 ]
+    branches: [ main ]
+  pull_request:
+    branches:
+      - main
+
 
 permissions:
   checks: write
