@@ -20,4 +20,9 @@ jobs:
       name: Restore
     - run: dotnet build
       name: Build
-    - run: dotnet test
+    - run: dotnet test --logger "trx;LogFileName=report.trx" --results-directory ./test-output
+      name: Unit tests
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      with:
+        files: ./MathWorkshop/test-output/*.trx
