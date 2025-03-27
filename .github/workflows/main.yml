@@ -1,0 +1,37 @@
+name: Matikkapipeline
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches:
+      - main
+
+
+permissions:
+  checks: write
+  pull-requests: write
+
+defaults:
+  run:
+    working-directory: ./MathWorkshop
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '8.0.x'
+    - run: dotnet restore
+      name: Restore
+    - run: dotnet build
+      name: Build
+    - run: dotnet test --logger "trx;LogFileName=report.trx" --results-directory ./test-output
+      name: Unit tests
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2
+      if: always()
+      with:
+        files: ./MathWorkshop/test-output/*.trx
