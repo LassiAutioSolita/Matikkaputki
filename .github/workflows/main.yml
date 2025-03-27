@@ -3,6 +3,10 @@ on:
   push:
     branches: [ pipeline-1 ]
 
+permissions:
+  checks: write
+  pull-requests: write
+
 defaults:
   run:
     working-directory: ./MathWorkshop
