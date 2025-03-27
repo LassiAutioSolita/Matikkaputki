@@ -1,7 +1,7 @@
 name: Matikkapipeline
 on:
   push:
-    branches: [ pipeline ]
+    branches: [ pipeline-1 ]
 
 jobs:
   build:
