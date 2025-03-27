@@ -1,7 +1,10 @@
 name: Matikkapipeline
 on:
   push:
-    branches: [ pipeline-1 ]
+    branches: [ main ]
+  pull_request:
+    branches:
+      - main
 
 permissions:
   checks: write
