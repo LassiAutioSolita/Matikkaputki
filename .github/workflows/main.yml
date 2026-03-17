@@ -1,7 +1,8 @@
 name: Matikkapipeline
 on:
   push:
-    branches: [ main ]
+    branches: [ akatemia-testaus-2026-03 ]
+  workflow_dispatch:
 
 jobs:
   build:
