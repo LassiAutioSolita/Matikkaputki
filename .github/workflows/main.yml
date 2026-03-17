@@ -1,8 +1,12 @@
 name: Matikkapipeline
+
 on:
   push:
     branches: [ akatemia-testaus-2026-03 ]
-  workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: ./MathWorkshop
 
 jobs:
   build:
@@ -13,3 +17,5 @@ jobs:
       uses: actions/setup-dotnet@v5
       with:
         dotnet-version: '10.0.x'
+    - run: dotnet restore
+    - run: dotnet build
