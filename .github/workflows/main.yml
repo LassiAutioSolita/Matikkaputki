@@ -23,3 +23,8 @@ jobs:
       name: Build
     - run: dotnet test --logger "trx;LogFileName=report.trx" --results-directory ./test-output
       name: Unit tests
+    - name: Publish test results
+      uses: dorny/test-reporter@v2
+      with:
+        path: ./MathWorkshop/test-output/*.trx
+        reporter: dotnet-trx
