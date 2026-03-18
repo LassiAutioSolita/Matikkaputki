@@ -3,6 +3,9 @@ name: Matikkapipeline
 on:
   push:
     branches: [ akatemia-testaus-2026-03 ]
+  pull_request:
+    branches:
+      - main
 
 defaults:
   run:
