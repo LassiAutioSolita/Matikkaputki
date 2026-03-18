@@ -1,0 +1,37 @@
+name: Matikkapipeline
+
+on:
+  push:
+    branches: [ akatemia-testaus-2026-03 ]
+  pull_request:
+    branches:
+      - main
+
+defaults:
+  run:
+    working-directory: ./MathWorkshop
+
+permissions:
+  checks: write
+  pull-requests: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v6
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v5
+      with:
+        dotnet-version: '10.0.x'
+    - run: dotnet restore
+      name: Restore
+    - run: dotnet build
+      name: Build
+    - run: dotnet test --logger "trx;LogFileName=report.trx" --results-directory ./test-output
+      name: Unit tests
+    - name: Publish test results
+      uses: EnricoMi/publish-unit-test-result-action@v2.16.1
+      if: always()
+      with:
+        files: ./MathWorkshop/test-output/*.trx
